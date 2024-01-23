@@ -17,7 +17,7 @@ on:
         default: latest
         required: false
   schedule:
-    - cron: "0 * * * *" # Every hour
+    - cron: "0 9 * * *" # Every hour
   push:
     branches: ["master"]
     paths:

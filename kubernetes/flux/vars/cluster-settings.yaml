@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-settings
+  namespace: flux-system
+data:
+  TIMEZONE: America/New_York
+
+  # Storage
+  CLUSTER_STORAGE_BLOCK: ceph-block
+  CLUSTER_SNAPSHOT_BLOCK: csi-ceph-block
+  CLUSTER_STORAGE_FILESYSTEM: ceph-filesystem
+  CLUSTER_SNAPSHOT_FILESYSTEM: csi-ceph-filesystem
+  CLUSTER_STORAGE_BUCKET: ceph-bucket
+
+  # K8s
+
+  # Cilium
+
+  # LAN
+
+  # Shh :-)

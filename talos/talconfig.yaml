@@ -131,6 +131,16 @@ controlPlane:
         network:
           disableSearchDomain: true
 
+    # Enable cluster discovery
+    - &discoveryPatch |-
+      cluster:
+        discovery:
+          registries:
+            kubernetes:
+              disabled: false
+            service:
+              disabled: true
+
     # Enable KubeSpan
     - &enableKubespan |-
       machine:
@@ -210,8 +220,8 @@ controlPlane:
         controllerManager:
           extraArgs:
             bind-address: 0.0.0.0
-        coreDNS:
-          disabled: true
+        # coreDNS:
+        #   disabled: true
         proxy:
           disabled: true
         scheduler:

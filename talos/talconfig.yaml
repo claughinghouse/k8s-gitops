@@ -1,0 +1,256 @@
+---
+clusterName: &cluster k8s
+
+clusterPodNets:
+  - 10.244.0.0/16
+clusterSvcNets:
+  - 10.245.0.0/16
+
+endpoint: https://k8s.${domainName}:6443
+
+# renovate: datasource=docker depName=ghcr.io/buroa/installer
+talosVersion: v1.6.2
+# renovate: datasource=github-releases depName=kubernetes/kubernetes extractVersion=^v(?<version>.*)$
+kubernetesVersion: 1.29.1
+
+cniConfig:
+  name: none
+
+nodes:
+  # n1
+  - hostname: n1
+    ipAddress: ${n1ip}
+    installDiskSelector:
+      size: "<= 500GB"
+      model: INTEL*
+    controlPlane: true
+    networkInterfaces:
+      - interface: eno4
+        vlans:
+          - vlanId: ${publicVlan}
+            dhcp: false
+            addresses:
+              - ${n1ip}/28
+            routes:
+              - network: 0.0.0.0/0
+                gateway: ${gateway}
+      - interface: eno3
+        vlans:
+          - vlanId: ${internalVlan}
+            dhcp: false
+            addresses:
+              - ${n1IntIp}/24
+    nodeLabels: &masterLabels
+      topology.kubernetes.io/region: *cluster
+      topology.kubernetes.io/zone: m
+
+  # n2
+  - hostname: n2
+    ipAddress: ${n2ip}
+    installDiskSelector:
+      size: "<= 500GB"
+      model: INTEL*
+    controlPlane: true
+    networkInterfaces:
+      - interface: eno4
+        vlans:
+          - vlanId: ${publicVlan}
+            dhcp: false
+            addresses:
+              - ${n2ip}/28
+            routes:
+              - network: 0.0.0.0/0
+                gateway: ${gateway}
+          - vlanId: ${internalVlan}
+            dhcp: false
+            addresses:
+              - ${n2IntIp}/24
+    nodeLabels: &masterLabels
+      topology.kubernetes.io/region: *cluster
+      topology.kubernetes.io/zone: m
+
+  # n3
+  - hostname: n3
+    ipAddress: ${n3ip}
+    installDiskSelector:
+      size: "<= 500GB"
+      model: INTEL*
+    controlPlane: true
+    networkInterfaces:
+      - interface: eno4
+        vlans:
+          - vlanId: ${publicVlan}
+            dhcp: false
+            addresses:
+              - ${n3ip}/28
+            routes:
+              - network: 0.0.0.0/0
+                gateway: ${gateway}
+      - interface: eno3
+        vlans:
+          - vlanId: ${internalVlan}
+            dhcp: false
+            addresses:
+              - ${n3IntIp}/24
+    nodeLabels: &masterLabels
+      topology.kubernetes.io/region: *cluster
+      topology.kubernetes.io/zone: m
+
+  # n4
+  - hostname: n4
+    ipAddress: ${n4ip}
+    installDiskSelector:
+      size: "<= 500GB"
+      model: INTEL*
+    controlPlane: true
+    networkInterfaces:
+      - interface: eno4
+        vlans:
+          - vlanId: ${publicVlan}
+            dhcp: false
+            addresses:
+              - ${n4ip}/28
+            routes:
+              - network: 0.0.0.0/0
+                gateway: ${gateway}
+      - interface: eno3
+        vlans:
+          - vlanId: ${internalVlan}
+            dhcp: false
+            addresses:
+              - ${n4IntIp}/24
+    nodeLabels: &masterLabels
+      topology.kubernetes.io/region: *cluster
+      topology.kubernetes.io/zone: m
+
+controlPlane:
+  patches:
+    # Disable search domain everywhere
+    - &disableSearchDomainPatch |-
+      machine:
+        network:
+          disableSearchDomain: true
+
+    # Enable KubeSpan
+    - &enableKubespan |-
+      machine:
+        network:
+          kubespan:
+            enabled: true
+
+    # Enable cluster discovery
+    - &discoveryPatch |-
+      cluster:
+        discovery:
+          enabled: true
+          registries:
+            kubernetes:
+              disabled: true
+
+    # Configure kubelet
+    - &kubeletPatch |-
+      machine:
+        kubelet:
+          extraArgs:
+            feature-gates: GracefulNodeShutdown=true
+            rotate-server-certificates: true
+          nodeIP:
+            validSubnets:
+              - 10.1.6.0/24
+
+    # Enable KubePrism
+    - &kubePrismPatch |-
+      machine:
+        features:
+          kubePrism:
+            enabled: true
+            port: 7445
+
+    # Enable logging
+    - &loggingPatch |-
+      machine:
+        logging:
+          destinations:
+            - endpoint: udp://vector.${domainName}:6002
+              format: json_lines
+
+    # Force nameserver
+    - &nameserverPatch |-
+      machine:
+        network:
+          nameservers:
+            - 1.1.1.1
+            - 8.8.8.8
+            - 1.0.0.1
+            - 8.8.4.4
+
+    # # Configure NTP
+    - &ntpPatch |-
+      machine:
+        time:
+          disabled: false
+          servers:
+            - time.cloudflare.com
+
+    # Custom Talos installer patch
+    - &talosPatch |-
+      machine:
+        install:
+          extraKernelArgs:
+            - mitigations=off
+            - net.ifnames=0
+            - talos.logging.kernel=udp://vector.${domainName}:6001/
+          legacyBIOSSupport: true
+          wipe: true
+
+    # Cluster configuration
+    - |-
+      cluster:
+        allowSchedulingOnMasters: true
+        controllerManager:
+          extraArgs:
+            bind-address: 0.0.0.0
+        coreDNS:
+          disabled: true
+        proxy:
+          disabled: true
+        scheduler:
+          extraArgs:
+            bind-address: 0.0.0.0
+
+    # ETCD configuration
+    - |-
+      cluster:
+        etcd:
+          extraArgs:
+            listen-metrics-urls: http://0.0.0.0:2381
+            unsafe-no-fsync: true
+          advertisedSubnets:
+            - ${advertisedSubnets}
+
+    # Disable default API server admission plugins.
+    - |-
+      - op: remove
+        path: /cluster/apiServer/admissionControl
+
+    # Enable K8s Talos API Access
+    - |-
+      machine:
+        features:
+          kubernetesTalosAPIAccess:
+            enabled: true
+            allowedRoles:
+              - os:admin
+            allowedKubernetesNamespaces:
+              - kube-system
+
+# worker:
+#   patches:
+#     - *disableSearchDomainPatch
+#     - *discoveryPatch
+#     - *kubeletPatch
+#     - *kubePrismPatch
+#     - *loggingPatch
+#     - *nameserverPatch
+#     - *ntpPatch
+#     - *talosPatch

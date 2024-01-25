@@ -70,11 +70,11 @@ spec:
           osdsPerDevice: "1"
         nodes:
           - name: n2
-            deviceFilter: /dev/sd[b-h]
+            deviceFilter: ^sd[b-h]
           - name: n3
-            deviceFilter: /dev/sd[b-h]
+            deviceFilter: ^sd[b-h]
           - name: n4
-            deviceFilter: /dev/sd[b-h]
+            deviceFilter: ^sd[b-h]
       # placement:
       #   mgr: &placement
       #     nodeAffinity:

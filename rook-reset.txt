@@ -1,0 +1,71 @@
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: disk-wipe-n2
+spec:
+  restartPolicy: Never
+  nodeName: n2
+  containers:
+  - name: disk-wipe
+    image: busybox
+    securityContext:
+      privileged: true
+    command: ["/bin/sh", "-c", "
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdb;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdc;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdd;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sde;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdf;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdg;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdh;
+      "]
+EOF
+
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: disk-wipe-n3
+spec:
+  restartPolicy: Never
+  nodeName: n3
+  containers:
+  - name: disk-wipe
+    image: busybox
+    securityContext:
+      privileged: true
+    command: ["/bin/sh", "-c", "
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdb;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdc;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdd;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sde;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdf;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdg;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdh;
+      "]
+EOF
+
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: disk-wipe-n4
+spec:
+  restartPolicy: Never
+  nodeName: n4
+  containers:
+  - name: disk-wipe
+    image: busybox
+    securityContext:
+      privileged: true
+    command: ["/bin/sh", "-c", "
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdb;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdc;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdd;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sde;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdf;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdg;
+        dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/sdh;
+      "]
+EOF

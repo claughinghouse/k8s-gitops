@@ -2,7 +2,9 @@
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   packageRules: [
     {
-      description: "Auto-merge container digests updates for trusted containers",
+      description: [
+        "Auto-merge container digests updates for trusted containers",
+      ],
       matchDatasources: ["docker"],
       automerge: true,
       automergeType: "branch",
@@ -11,11 +13,10 @@
         "ghcr.io/buroa",
         "ghcr.io/bjw-s",
         "ghcr.io/onedr0p",
-        "ghcr.io/claughinghouse",
       ],
     },
     {
-      description: "Auto-merge GitHub Actions for minor, patch, and digest",
+      description: ["Auto-merge GitHub Actions for minor, patch, and digest"],
       matchManagers: ["github-actions"],
       matchDatasources: ["github-tags"],
       automerge: true,

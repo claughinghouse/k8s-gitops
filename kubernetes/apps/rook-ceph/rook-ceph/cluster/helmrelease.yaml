@@ -74,16 +74,16 @@ spec:
             deviceFilter: sd[b-h]
           - name: n4
             deviceFilter: sd[b-h]
-      placement:
-        mgr: &placement
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: node-role.kubernetes.io/control-plane
-                      operator: Exists
-        mon:
-          <<: *placement
+      # placement:
+      #   mgr: &placement
+      #     nodeAffinity:
+      #       requiredDuringSchedulingIgnoredDuringExecution:
+      #         nodeSelectorTerms:
+      #           - matchExpressions:
+      #               - key: node-role.kubernetes.io/control-plane
+      #                 operator: Exists
+      #   mon:
+      #     <<: *placement
       resources:
         mgr:
           requests:

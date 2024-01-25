@@ -31,11 +31,10 @@ spec:
       enableLiveness: true
       provisioner:
         image: registry.k8s.io/sig-storage/csi-provisioner:v4.0.0
-        # TODO
-    #   serviceMonitor:
-    #     enabled: true
-    # monitoring:
-    #   enabled: true
+      serviceMonitor:
+        enabled: true
+    monitoring:
+      enabled: true
     resources:
       requests:
         cpu: 100m # unchangable

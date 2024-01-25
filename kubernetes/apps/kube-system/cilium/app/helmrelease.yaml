@@ -82,7 +82,7 @@ spec:
           annotations:
             hajimari.io/icon: simple-icons:cilium
           hosts:
-            - &host hubble.${PUBLIC_DOMAIN}
+            - &host hubble.${SECRET_DOMAIN}
           tls:
             - hosts:
                 - *host

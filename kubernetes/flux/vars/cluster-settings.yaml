@@ -15,6 +15,8 @@ data:
   CLUSTER_STORAGE_BUCKET: ceph-bucket
 
   # K8s
+  CLUSTER_POD_IP_CIDR: 10.244.0.0/16
+  CLUSTER_SERVICE_IP_CIDR: 10.245.0.0/16
 
   # Cilium
 

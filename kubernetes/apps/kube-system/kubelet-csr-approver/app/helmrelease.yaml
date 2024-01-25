@@ -24,4 +24,4 @@ spec:
     keepHistory: false
   values:
     providerRegex: |
-      ^k(m|w)\d\d?$
+      n\d+$

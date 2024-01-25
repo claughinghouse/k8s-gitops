@@ -28,6 +28,8 @@ spec:
     # monitoring:
     #   enabled: true
     #   createPrometheusRules: true
+    crds:
+      enabled: true
     ingress:
       dashboard:
         ingressClassName: internal

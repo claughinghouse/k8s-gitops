@@ -24,21 +24,22 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    monitoring:
-      enabled: true
-      createPrometheusRules: true
-    ingress:
-      dashboard:
-        ingressClassName: internal
-        annotations:
-          hajimari.io/appName: Rook
-          hajimari.io/icon: mdi:chess-rook
-        host:
-          name: &host rook.${SECRET_DOMAIN}
-          path: /
-        tls:
-          - hosts:
-              - *host
+    # monitoring:
+    #   enabled: true
+    #   createPrometheusRules: true
+    # TODO
+    # ingress:
+    #   dashboard:
+    #     ingressClassName: internal
+    #     annotations:
+    #       hajimari.io/appName: Rook
+    #       hajimari.io/icon: mdi:chess-rook
+    #     host:
+    #       name: &host rook.${SECRET_DOMAIN}
+    #       path: /
+    #     tls:
+    #       - hosts:
+    #           - *host
     toolbox:
       enabled: true
     configOverride: |
@@ -58,10 +59,10 @@ spec:
           requireMsgr2: true
       crashCollector:
         disable: false
-      dashboard:
-        enabled: true
-        urlPrefix: /
-        ssl: false
+      # dashboard:
+      #   enabled: true
+      #   urlPrefix: /
+      #   ssl: false
       storage:
         useAllNodes: true
         useAllDevices: false

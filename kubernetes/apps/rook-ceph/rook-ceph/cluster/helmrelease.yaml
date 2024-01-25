@@ -68,13 +68,13 @@ spec:
         useAllDevices: true
         config:
           osdsPerDevice: "1"
-        # nodes:
-        #   - name: n2
-        #     deviceFilter: ^sd[b-h]
-        #   - name: n3
-        #     deviceFilter: ^sd[b-h]
-        #   - name: n4
-        #     deviceFilter: ^sd[b-h]
+        nodes:
+          - name: n2
+            deviceFilter: ^sd[b-h]
+          - name: n3
+            deviceFilter: ^sd[b-h]
+          - name: n4
+            deviceFilter: ^sd[b-h]
       # placement:
       #   mgr: &placement
       #     nodeAffinity:

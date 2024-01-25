@@ -59,10 +59,10 @@ spec:
           requireMsgr2: true
       crashCollector:
         disable: false
-      # dashboard:
-      #   enabled: true
-      #   urlPrefix: /
-      #   ssl: false
+      dashboard:
+        enabled: true
+        urlPrefix: /
+        ssl: false
       storage:
         useAllNodes: true
         useAllDevices: true

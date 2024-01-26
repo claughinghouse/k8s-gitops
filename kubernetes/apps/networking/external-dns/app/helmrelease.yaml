@@ -49,8 +49,10 @@ spec:
               - --txt-owner-id=k8s
               - --txt-prefix=k8s.
             envFrom:
-              - secretRef:
-                  name: external-dns-secret
+              - name: CF_API_KEY
+                value: ${SECRET_EXTERNAL_DNS_CLOUDFLARE_API_KEY}
+              - name: CF_API_EMAIL
+                value: ${SECRET_CLOUDFLARE_EMAIL}
             probes:
               liveness: &probes
                 enabled: true

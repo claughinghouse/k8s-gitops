@@ -14,9 +14,8 @@ spec:
   storage:
     size: 20Gi
     storageClass: ceph-block
-  # superuserSecret:
-  #   name: cloudnative-pg-secret
-  #   key: POSTGRES_SUPER_USER
+  superuserSecret:
+    name: cloudnative-pg-secret
   postgresql:
     parameters:
       max_connections: "600"

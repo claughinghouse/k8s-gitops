@@ -2,7 +2,16 @@
 apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
 metadata:
-  name: lb-pool
+  name: int-lb-pool
 spec:
   cidrs:
-    - cidr: ${SECRET_CILIUM_LB_CIDR}
+    - cidr: ${SECRET_CILIUM_INT_LB_CIDR}
+
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: ext-lb-pool
+spec:
+  cidrs:
+    - cidr: ${SECRET_CILIUM_EXT_LB_CIDR}

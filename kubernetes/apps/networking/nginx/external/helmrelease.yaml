@@ -49,6 +49,7 @@ spec:
         proxy-buffer-size: 16k
         proxy-read-timeout: 7d
         proxy-send-timeout: 7d
+        force-ssl-redirect: true
         ssl-protocols: TLSv1.3 TLSv1.2
         use-forwarded-headers: true
         proxy-real-ip-cidr: ${CLUSTER_POD_IP_CIDR}

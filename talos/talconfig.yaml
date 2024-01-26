@@ -9,7 +9,7 @@ clusterSvcNets:
 endpoint: https://k8s.${domainName}:6443
 
 # renovate: datasource=docker depName=ghcr.io/buroa/installer
-talosVersion: v1.6.3
+talosVersion: v1.6.2
 # renovate: datasource=github-releases depName=kubernetes/kubernetes extractVersion=^v(?<version>.*)$
 kubernetesVersion: v1.29.1
 
@@ -40,6 +40,9 @@ nodes:
             dhcp: false
             addresses:
               - ${n1IntIp}/24
+            routes:
+              - network: ${vpnNetwork}
+                gateway: ${internalGateway}
     nodeLabels: &masterLabels
       topology.kubernetes.io/region: *cluster
       topology.kubernetes.io/zone: m
@@ -61,10 +64,15 @@ nodes:
             routes:
               - network: 0.0.0.0/0
                 gateway: ${gateway}
+      - interface: eno3
+        vlans:
           - vlanId: ${internalVlan}
             dhcp: false
             addresses:
               - ${n2IntIp}/24
+            routes:
+              - network: ${vpnNetwork}
+                gateway: ${internalGateway}
     nodeLabels: &masterLabels
       topology.kubernetes.io/region: *cluster
       topology.kubernetes.io/zone: m
@@ -92,6 +100,9 @@ nodes:
             dhcp: false
             addresses:
               - ${n3IntIp}/24
+            routes:
+              - network: ${vpnNetwork}
+                gateway: ${internalGateway}
     nodeLabels: &masterLabels
       topology.kubernetes.io/region: *cluster
       topology.kubernetes.io/zone: m
@@ -119,6 +130,9 @@ nodes:
             dhcp: false
             addresses:
               - ${n4IntIp}/24
+            routes:
+              - network: ${vpnNetwork}
+                gateway: ${internalGateway}
     nodeLabels: &masterLabels
       topology.kubernetes.io/region: *cluster
       topology.kubernetes.io/zone: m

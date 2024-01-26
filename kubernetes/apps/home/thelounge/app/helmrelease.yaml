@@ -1,0 +1,79 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app thelounge
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/thelounge/thelounge
+              tag: 4.4.1@sha256:50538b1b74184e43ac8c119f518243432026065f15e266ac2b23dbeb7de5802a
+            env:
+              THELOUNGE_HOME: /config
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          hajimari.io/icon: mdi:forum
+        hosts:
+          - host: &host "{{ .Release.Name }}.${PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        enabled: true
+        existingClaim: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 9000

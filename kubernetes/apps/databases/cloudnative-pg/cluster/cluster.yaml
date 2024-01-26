@@ -33,9 +33,7 @@ spec:
       wal:
         compression: bzip2
         maxParallel: 8
-      destinationPath:
-        name: cloudnative-pg-secret
-        key: R2_S3_BUCKET
+      destinationPath: ${R2_S3_BUCKET}
       endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
@@ -43,10 +41,10 @@ spec:
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
-          key: AWS_ACCESS_KEY_ID
+          key: ${POSTGRES_AWS_ACCESS_KEY_ID}
         secretAccessKey:
           name: cloudnative-pg-secret
-          key: AWS_SECRET_ACCESS_KEY
+          key: ${POSTGRES_AWS_SECRET_ACCESS_KEY}
   # # Note: previousCluster needs to be set to the name of the previous
   # # cluster when recovering from an existing cnpg cluster
   # bootstrap:

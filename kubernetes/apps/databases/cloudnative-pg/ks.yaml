@@ -25,8 +25,6 @@ spec:
   targetNamespace: databases
   dependsOn:
     - name: cluster-apps-cloudnative-pg
-    - name: cluster-apps-external-secrets-stores
-    - name: cluster-apps-democratic-csi-local-hostpath
   path: ./kubernetes/apps/databases/cloudnative-pg/cluster
   prune: true
   sourceRef:

@@ -13,9 +13,10 @@ spec:
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
-    storageClass: ${CLUSTER_STORAGE_HOSTPATH}
-  superuserSecret:
-    name: cloudnative-pg-secret
+    storageClass: ceph-block
+  # superuserSecret:
+  #   name: cloudnative-pg-secret
+  #   key: POSTGRES_SUPER_USER
   postgresql:
     parameters:
       max_connections: "600"
@@ -32,7 +33,9 @@ spec:
       wal:
         compression: bzip2
         maxParallel: 8
-      destinationPath: s3://barman-u7z9m76w/
+      destinationPath:
+        name: cloudnative-pg-secret
+        key: R2_S3_BUCKET
       endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster

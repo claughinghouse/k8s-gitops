@@ -76,7 +76,7 @@ spec:
           io.cilium/lb-ipam-ips: ${SECRET_INT_INGRESS_LB_IP}
           external-dns.alpha.kubernetes.io/hostname: internal.${SECRET_DOMAIN}
         labels:
-          io.cilium/lb-ipam-layer2: "true"
+          io.cilium/lb-int-ipam-layer2: "true"
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname

@@ -6,7 +6,7 @@ metadata:
 spec:
   loadBalancerIPs: true
   interfaces:
-    - eno4.4000
+    # - eno4.4000
     - eno3.6
   nodeSelector:
     matchLabels:

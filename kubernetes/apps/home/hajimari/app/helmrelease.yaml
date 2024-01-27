@@ -23,8 +23,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    externalName: hajimari
-    type: ExternalName
     env:
       TZ: ${TIMEZONE}
     hajimari:
@@ -47,7 +45,6 @@ spec:
         ingressClassName: internal
         annotations:
           hajimari.io/enable: "false"
-          tailscale.com/tailnet-fqdn: "hajimari.${SECRET_TAILNET_NAME}"
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths: &paths
@@ -62,6 +59,10 @@ spec:
               - *host
               - *customHost0
               - *customHost1
+    service:
+      metadata:
+        annotations:
+          tailscale.com/tailnet-fqdn: "hajimari.${SECRET_TAILNET_NAME}"
     podAnnotations:
       configmap.reloader.stakater.com/reload: hajimari-settings
     persistence:

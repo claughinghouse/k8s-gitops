@@ -36,17 +36,15 @@ spec:
               tag: v1.56.1@sha256:ac0c192f6cba52877e4d9c2fe8943f16c0ab44927605a21416852590e3ccb71e
             env:
               NO_AUTOUPDATE: true
-              PORT: &port ${TAILNET_PUBLIC_PORT}
+              PORT: &port ${SECRET_TAILNET_PUBLIC_PORT}
               TS_EXTRA_ARGS: --advertise-exit-node --advertise-tags=tag:k8s
               TS_KUBE_SECRET: ""
-              TS_ROUTES: ${LAN_SERVER_IP_CIDR},${CILIUM_LB_CIDR}
+              TS_ROUTES: ${SECRET_CILIUM_INT_LB_CIDR}
               TS_STATE_DIR: /tmp
               TS_TAILSCALED_EXTRA_ARGS: --debug=0.0.0.0:2000
               TS_USERSPACE: true
+              TS_AUTHKEY: ${SECRET_TAILSCALE_OAUTH_CLIENT_SECRET}
               TZ: ${TIMEZONE}
-            envFrom:
-              - secretRef:
-                  name: tailscale-secret
             resources:
               requests:
                 cpu: 10m
@@ -88,7 +86,7 @@ spec:
         controller: main
         type: LoadBalancer
         annotations:
-          io.cilium/lb-ipam-ips: ${TAILSCALE_LB_IP}
+          io.cilium/lb-ipam-ips: ${SECRET_TAILSCALE_LB_IP}
         labels:
           io.cilium/lb-ext-ipam-layer2: "true"
         ports:

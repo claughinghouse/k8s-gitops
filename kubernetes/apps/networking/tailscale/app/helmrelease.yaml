@@ -43,8 +43,11 @@ spec:
               TS_STATE_DIR: /tmp
               TS_TAILSCALED_EXTRA_ARGS: --debug=0.0.0.0:2000
               TS_USERSPACE: true
-              TS_AUTHKEY: ${SECRET_TAILSCALE_OAUTH_CLIENT_SECRET}
               TZ: ${TIMEZONE}
+            volumes:
+              - name: oauth
+                secret:
+                  secretName: operator-oauth
             resources:
               requests:
                 cpu: 10m

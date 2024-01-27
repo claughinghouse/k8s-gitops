@@ -43,9 +43,6 @@ nodes:
             routes:
               - network: ${vpnNetwork}
                 gateway: ${internalGateway}
-    nodeLabels: &masterLabels
-      topology.kubernetes.io/region: *cluster
-      topology.kubernetes.io/zone: m
 
   # n2
   - hostname: n2
@@ -73,9 +70,6 @@ nodes:
             routes:
               - network: ${vpnNetwork}
                 gateway: ${internalGateway}
-    nodeLabels: &masterLabels
-      topology.kubernetes.io/region: *cluster
-      topology.kubernetes.io/zone: m
 
   # n3
   - hostname: n3
@@ -103,9 +97,6 @@ nodes:
             routes:
               - network: ${vpnNetwork}
                 gateway: ${internalGateway}
-    nodeLabels: &masterLabels
-      topology.kubernetes.io/region: *cluster
-      topology.kubernetes.io/zone: m
 
   # n4
   - hostname: n4
@@ -133,11 +124,11 @@ nodes:
             routes:
               - network: ${vpnNetwork}
                 gateway: ${internalGateway}
-    nodeLabels: &masterLabels
-      topology.kubernetes.io/region: *cluster
-      topology.kubernetes.io/zone: m
 
 controlPlane:
+  nodeLabels:
+    topology.kubernetes.io/region: *cluster
+    topology.kubernetes.io/zone: m
   patches:
     # Disable search domain everywhere
     - &disableSearchDomainPatch |-
@@ -264,7 +255,7 @@ controlPlane:
           kubernetesTalosAPIAccess:
             enabled: true
             allowedRoles:
-              - os:admin
+              - os:operator
             allowedKubernetesNamespaces:
               - kube-system
 

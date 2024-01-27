@@ -14,8 +14,8 @@ spec:
   storage:
     size: 20Gi
     storageClass: ceph-block
-  # superuserSecret:
-  #   name: cloudnative-pg-secret
+  superuserSecret:
+    name: cloudnative-pg-secret
   postgresql:
     parameters:
       max_connections: "600"
@@ -32,7 +32,7 @@ spec:
       wal:
         compression: bzip2
         maxParallel: 8
-      destinationPath: ${R2_S3_BUCKET}
+      destinationPath: ${SECRET_R2_S3_BUCKET}
       endpointURL: https://${SECRET_CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
@@ -40,10 +40,10 @@ spec:
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
-          key: ${POSTGRES_AWS_ACCESS_KEY_ID}
+          key: AWS_ACCESS_KEY_ID
         secretAccessKey:
           name: cloudnative-pg-secret
-          key: ${POSTGRES_AWS_SECRET_ACCESS_KEY}
+          key: AWS_SECRET_ACCESS_KEY
   # # Note: previousCluster needs to be set to the name of the previous
   # # cluster when recovering from an existing cnpg cluster
   # bootstrap:

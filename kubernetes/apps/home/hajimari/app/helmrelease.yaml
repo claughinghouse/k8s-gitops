@@ -59,12 +59,6 @@ spec:
               - *host
               - *customHost0
               - *customHost1
-    service:
-      annotations:
-        tailscale.com/tailnet-fqdn: hajimari.${SECRET_TAILNET_NAME}
-      spec:
-        externalName: placeholder
-        type: ExternalName
     podAnnotations:
       configmap.reloader.stakater.com/reload: hajimari-settings
     persistence:

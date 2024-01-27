@@ -27,5 +27,6 @@ resources:
   - ./prometheus-community-charts.yaml
   - ./rook-ceph-charts.yaml
   - ./stakater-charts.yaml
+  - ./tailscale-charts.yaml
   - ./weave-gitops-charts.yaml
   - ./xenitab-charts.yaml

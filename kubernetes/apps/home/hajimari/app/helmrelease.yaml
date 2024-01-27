@@ -60,9 +60,8 @@ spec:
               - *customHost0
               - *customHost1
     service:
-      metadata:
-        annotations:
-          tailscale.com/tailnet-fqdn: hajimari.${SECRET_TAILNET_NAME}
+      annotations:
+        tailscale.com/tailnet-fqdn: hajimari.${SECRET_TAILNET_NAME}
       spec:
         externalName: placeholder
         type: ExternalName

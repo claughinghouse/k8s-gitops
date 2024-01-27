@@ -62,7 +62,7 @@ spec:
     service:
       metadata:
         annotations:
-          tailscale.com/tailnet-fqdn: "hajimari.${SECRET_TAILNET_NAME}"
+          tailscale.com/tailnet-fqdn: hajimari.${SECRET_TAILNET_NAME}
     podAnnotations:
       configmap.reloader.stakater.com/reload: hajimari-settings
     persistence:

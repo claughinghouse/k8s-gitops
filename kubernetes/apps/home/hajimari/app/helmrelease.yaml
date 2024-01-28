@@ -45,6 +45,8 @@ spec:
         ingressClassName: internal
         annotations:
           hajimari.io/enable: "false"
+          tailscale.com/expose: "true"
+
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths: &paths
@@ -59,9 +61,11 @@ spec:
               - *host
               - *customHost0
               - *customHost1
+    service:
+      annotations:
+        tailscale.com/expose: "true"
     podAnnotations:
       configmap.reloader.stakater.com/reload: hajimari-settings
-      tailscale.com/expose: "true"
     persistence:
       data:
         type: emptyDir

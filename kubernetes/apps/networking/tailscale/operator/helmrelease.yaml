@@ -17,7 +17,5 @@ spec:
         name: tailscale-charts
         namespace: flux-system
   values:
-    operatorConfig:
-      hostname: "tailscale-operator"
     apiServerProxyConfig:
       mode: "true"

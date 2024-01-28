@@ -61,6 +61,7 @@ spec:
               - *customHost1
     podAnnotations:
       configmap.reloader.stakater.com/reload: hajimari-settings
+      tailscale.com/expose: "true"
     persistence:
       data:
         type: emptyDir

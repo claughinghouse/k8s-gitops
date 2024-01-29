@@ -45,6 +45,16 @@ spec:
         ingressClassName: tailscale
         annotations:
           hajimari.io/enable: "false"
+        rules:
+          - http:
+              paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                      name: hajimari
+                      port:
+                        number: 3000
         # hosts:
         #   - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
         #     paths: &paths

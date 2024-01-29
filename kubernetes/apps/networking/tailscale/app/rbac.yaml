@@ -306,7 +306,7 @@ subjects:
 #         - name: oauth
 #           secret:
 #             secretName: operator-oauth
-# ---
+---
 apiVersion: networking.k8s.io/v1
 kind: IngressClass
 metadata:

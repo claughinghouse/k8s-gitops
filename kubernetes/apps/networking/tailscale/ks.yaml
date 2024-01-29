@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: networking
-  path: ./kubernetes/apps/networking/tailscale/operator
+  path: ./kubernetes/apps/networking/tailscale/app
   prune: true
   sourceRef:
     kind: GitRepository

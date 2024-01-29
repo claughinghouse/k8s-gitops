@@ -42,38 +42,27 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: tailscale
+        ingressClassName: internal
         annotations:
           hajimari.io/enable: "false"
-        rules:
-          - http:
-              paths:
-                - path: /
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: hajimari
-                      port:
-                        number: 3000
-        # hosts:
-        #   - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
-        #     paths: &paths
-        #       - path: /
-        #         pathType: Prefix
-        #   - host: &customHost0 www.${SECRET_DOMAIN}
-        #     paths: *paths
-        #   - host: &customHost1 ${SECRET_DOMAIN}
-        #     paths: *paths
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths: &paths
+              - path: /
+                pathType: Prefix
+          - host: &customHost0 www.${SECRET_DOMAIN}
+            paths: *paths
+          - host: &customHost1 ${SECRET_DOMAIN}
+            paths: *paths
         tls:
           - hosts:
-              - "{{ .Release.Name }}"
-              # - *host
-              # - *customHost0
-              # - *customHost1
-    # service:
-    #   main:
-    #     annotations:
-    #       tailscale.com/expose: "true"
+              - *host
+              - *customHost0
+              - *customHost1
+    service:
+      main:
+        annotations:
+          tailscale.com/expose: "true"
     podAnnotations:
       configmap.reloader.stakater.com/reload: hajimari-settings
     persistence:

@@ -41,7 +41,7 @@ spec:
               GEOIPUPDATE_VERBOSE: true
             envFrom:
               - secretRef:
-                  name: vector-aggregator-secret
+                  name: vector-aggregator-maxmind-secret
         containers:
           main:
             image:
@@ -104,4 +104,3 @@ spec:
     serviceAccount:
       create: true
       name: *app
-

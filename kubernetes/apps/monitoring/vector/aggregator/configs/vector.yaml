@@ -48,32 +48,32 @@ transforms:
     source: |-
       .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
 
-  talos_kernel_transform:
-    type: remap
-    inputs:
-      - talos_kernel_logs
-    source: |-
-      r1 = replace!(.__host, "10.0.3.10", "m0")
-      r2 = replace(r1, "10.0.3.11", "m1")
-      r3 = replace(r2, "10.0.3.12", "m2")
-      r4 = replace(r3, "10.0.3.20", "w0")
-      r5 = replace(r4, "10.0.3.21", "w1")
-      r6 = replace(r5, "10.0.3.22", "w2")
-      .node = r6
+  # talos_kernel_transform:
+  #   type: remap
+  #   inputs:
+  #     - talos_kernel_logs
+  #   source: |-
+  #     r1 = replace!(.__host, "10.0.3.10", "m0")
+  #     r2 = replace(r1, "10.0.3.11", "m1")
+  #     r3 = replace(r2, "10.0.3.12", "m2")
+  #     r4 = replace(r3, "10.0.3.20", "w0")
+  #     r5 = replace(r4, "10.0.3.21", "w1")
+  #     r6 = replace(r5, "10.0.3.22", "w2")
+  #     .node = r6
 
-  talos_service_transform:
-    type: remap
-    inputs:
-      - talos_service_logs
-    source: |-
-      r1 = replace!(.__host, "10.0.3.10", "m0")
-      r2 = replace(r1, "10.0.3.11", "m1")
-      r3 = replace(r2, "10.0.3.12", "m2")
-      r4 = replace(r3, "10.0.3.20", "w0")
-      r5 = replace(r4, "10.0.3.21", "w1")
-      r6 = replace(r5, "10.0.3.22", "w2")
-      r7 = replace(r6, r'10.*', "talos")
-      .node = r7
+  # talos_service_transform:
+  #   type: remap
+  #   inputs:
+  #     - talos_service_logs
+  #   source: |-
+  #     r1 = replace!(.__host, "10.0.3.10", "m0")
+  #     r2 = replace(r1, "10.0.3.11", "m1")
+  #     r3 = replace(r2, "10.0.3.12", "m2")
+  #     r4 = replace(r3, "10.0.3.20", "w0")
+  #     r5 = replace(r4, "10.0.3.21", "w1")
+  #     r6 = replace(r5, "10.0.3.22", "w2")
+  #     r7 = replace(r6, r'10.*', "talos")
+  #     .node = r7
 
   unifi_kernel_transform:
     type: remap
@@ -135,17 +135,3 @@ sinks:
       talos_service: '{{ "talos-service" }}'
       namespace: "talos:service"
 
-  unifi_kernel:
-    type: loki
-    inputs:
-      - unifi_kernel_transform
-    endpoint: http://loki-gateway.monitoring.svc.cluster.local.:80
-    encoding:
-      codec: json
-    batch:
-      max_bytes: 524288
-    out_of_order_action: rewrite_timestamp
-    labels:
-      node: "{{ host }}"
-      facility: "{{ facility }}"
-      namespace: "unifi:kernel"

@@ -40,29 +40,38 @@ spec:
       namespaceSelector:
         any: true
     ingress:
+      # main:
+      #   enabled: true
+      #   ingressClassName: internal
+      #   annotations:
+      #     hajimari.io/enable: "false"
+      #   hosts:
+      #     - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+      #       paths: &paths
+      #         - path: /
+      #           pathType: Prefix
+      #     - host: &customHost0 www.${SECRET_DOMAIN}
+      #       paths: *paths
+      #     - host: &customHost1 ${SECRET_DOMAIN}
+      #       paths: *paths
+      #   tls:
+      #     - hosts:
+      #         - *host
+      #         - *customHost0
+      #         - *customHost1
       main:
         enabled: true
-        ingressClassName: internal
+        ingressClassName: tailscale
         annotations:
           hajimari.io/enable: "false"
-        hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
-            paths: &paths
-              - path: /
-                pathType: Prefix
-          - host: &customHost0 www.${SECRET_DOMAIN}
-            paths: *paths
-          - host: &customHost1 ${SECRET_DOMAIN}
-            paths: *paths
         tls:
           - hosts:
-              - *host
-              - *customHost0
-              - *customHost1
-    service:
-      main:
-        annotations:
-          tailscale.com/expose: "true"
+              - "hajimari-test"
+
+    # service:
+    #   main:
+    #     annotations:
+    #       tailscale.com/expose: "true"
     podAnnotations:
       configmap.reloader.stakater.com/reload: hajimari-settings
     persistence:

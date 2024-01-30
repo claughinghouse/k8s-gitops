@@ -64,9 +64,9 @@ spec:
         ingressClassName: tailscale
         annotations:
           hajimari.io/enable: "false"
-        tls:
-          - hosts:
-              - "hajimari-test"
+        # tls:
+        #   - hosts:
+        #       - "hajimari-test"
 
     # service:
     #   main:

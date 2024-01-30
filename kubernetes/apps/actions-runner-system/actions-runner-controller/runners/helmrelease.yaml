@@ -42,13 +42,10 @@ spec:
   valuesFrom:
     - kind: Secret
       name: actions-runner-controller-secret
-      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_APP_ID
-      # targetPath: githubConfigSecret.github_app_id
+      key: ACTION_RUNNER_CONTROLLER_GITHUB_APP_ID
     - kind: Secret
       name: actions-runner-controller-secret
-      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_INSTALLATION_ID
-      # targetPath: githubConfigSecret.github_app_installation_id
+      key: ACTION_RUNNER_CONTROLLER_GITHUB_INSTALLATION_ID
     - kind: Secret
       name: actions-runner-controller-secret
-      valuesKey: ACTION_RUNNER_CONTROLLER_GITHUB_PRIVATE_KEY
-      # targetPath: githubConfigSecret.github_app_private_key
+      key: ACTION_RUNNER_CONTROLLER_GITHUB_PRIVATE_KEY

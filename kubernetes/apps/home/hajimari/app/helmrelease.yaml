@@ -61,10 +61,15 @@ spec:
               - *customHost1
       tailscale:
         enabled: true
-        className: tailscale
+        ingressClassName: tailscale
+        annotations:
+          hajimari.io/enable: "false"
+          tailscale.com/expose: "true"
         hosts:
           - host: *app
-            paths: *paths
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
           - hosts:
               - *app

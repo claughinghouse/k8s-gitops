@@ -41,8 +41,8 @@ spec:
         failureThreshold: 2
       persistence:
         enabled: false
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-        interval: 1m
+    # metrics:
+    #   enabled: true
+    #   serviceMonitor:
+    #     enabled: true
+    #     interval: 1m

@@ -42,10 +42,3 @@ spec:
   valuesFrom:
     - kind: Secret
       name: actions-runner-controller-secret
-      key: ACTION_RUNNER_CONTROLLER_GITHUB_APP_ID
-    - kind: Secret
-      name: actions-runner-controller-secret
-      key: ACTION_RUNNER_CONTROLLER_GITHUB_INSTALLATION_ID
-    - kind: Secret
-      name: actions-runner-controller-secret
-      key: ACTION_RUNNER_CONTROLLER_GITHUB_PRIVATE_KEY

@@ -59,10 +59,10 @@ spec:
               - *host
               - *customHost0
               - *customHost1
-    # service:
-    #   main:
-    #     annotations:
-    #       tailscale.com/expose: "true"
+    service:
+      main:
+        annotations:
+          tailscale.com/expose: "true"
     podAnnotations:
       configmap.reloader.stakater.com/reload: hajimari-settings
     persistence:

@@ -64,6 +64,7 @@ spec:
         ingressClassName: tailscale
         annotations:
           hajimari.io/enable: "false"
+          tailscale.com/expose: "true"
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths: &paths

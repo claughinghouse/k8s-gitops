@@ -27,6 +27,7 @@ spec:
     githubConfigUrl: https://github.com/claughinghouse/k8s-gitops
     minRunners: 1
     maxRunners: 3
+    githubConfigSecret: actions-runner-controller-secret
     containerMode:
       type: dind
     template:
@@ -39,6 +40,3 @@ spec:
     controllerServiceAccount:
       name: actions-runner-controller-gha-rs-controller
       namespace: actions-runner-system
-  valuesFrom:
-    - kind: Secret
-      name: actions-runner-controller-secret

@@ -47,7 +47,7 @@ identity_providers:
     clients:
       - id: grafana
         description: Grafana
-        secret: ${AUTHELIA_GRAFANA_OAUTH_CLIENT_SECRET}
+        secret: $${AUTHELIA_GRAFANA_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -62,7 +62,7 @@ identity_providers:
 
       - id: miniflux
         description: Miniflux
-        secret: ${AUTHELIA_MINIFLUX_OAUTH_CLIENT_SECRET}
+        secret: $${AUTHELIA_MINIFLUX_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -77,7 +77,7 @@ identity_providers:
 
       - id: nodered
         description: Node-RED
-        secret: ${AUTHELIA_NODE_RED_OAUTH_CLIENT_SECRET}
+        secret: $${AUTHELIA_NODE_RED_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -92,7 +92,7 @@ identity_providers:
 
       - id: weave-gitops
         description: Weave GitOps
-        secret: ${AUTHELIA_WEAVE_GITOPS_OAUTH_CLIENT_SECRET}
+        secret: $${AUTHELIA_WEAVE_GITOPS_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y

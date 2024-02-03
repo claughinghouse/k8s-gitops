@@ -1,5 +1,12 @@
 ---
-# alerting:
+alerting:
+  iscord:
+    webhook-url: $${GATUS_DISCORD_WEBHOOK}
+    default-alert:
+      description: healthcheck failed
+      send-on-resolved: true
+      failure-threshold: 3
+      success-threshold: 5
 #   pushover:
 #     application-token: $${GATUS_PUSHOVER_APP_TOKEN}
 #     user-key: $${GATUS_PUSHOVER_USER_KEY}

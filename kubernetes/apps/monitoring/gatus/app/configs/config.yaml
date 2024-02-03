@@ -7,14 +7,6 @@ alerting:
       send-on-resolved: true
       failure-threshold: 3
       success-threshold: 5
-#   pushover:
-#     application-token: $${GATUS_PUSHOVER_APP_TOKEN}
-#     user-key: $${GATUS_PUSHOVER_USER_KEY}
-#     default-alert:
-#       description: healthcheck failed
-#       send-on-resolved: true
-#       failure-threshold: 3
-#       success-threshold: 5
 
 connectivity:
   checker:
@@ -34,3 +26,7 @@ ui:
 
 web:
   port: $${CUSTOM_WEB_PORT}
+
+envFrom:
+  - configMapRef:
+      name: gatus-configmap

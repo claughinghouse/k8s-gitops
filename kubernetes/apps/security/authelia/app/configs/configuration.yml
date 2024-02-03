@@ -21,10 +21,7 @@ authentication_backend:
     groups_filter: (member={dn})
     group_search_mode: filter
     user: uid=admin,ou=people,dc=home,dc=arpa
-    password:
-      secretRef:
-        name: lldap-secret
-        key: LLDAP_ADMIN_USER_PASS
+    password: $${LLDAP_ADMIN_USER_PASS}
     attributes:
       username: uid
       display_name: displayName

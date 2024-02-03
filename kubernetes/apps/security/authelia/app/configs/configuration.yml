@@ -21,7 +21,7 @@ authentication_backend:
     groups_filter: (member={dn})
     group_search_mode: filter
     user: uid=admin,ou=people,dc=home,dc=arpa
-    password: $${LLDAP_ADMIN_USER_PASS}
+    password: ${LLDAP_ADMIN_USER_PASS}
     attributes:
       username: uid
       display_name: displayName
@@ -47,7 +47,7 @@ identity_providers:
     clients:
       - id: grafana
         description: Grafana
-        secret: $${GRAFANA_OAUTH_CLIENT_SECRET}
+        secret: ${GRAFANA_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -57,12 +57,12 @@ identity_providers:
           - groups
           - email
         redirect_uris:
-          - https://grafana.$${SECRET_DOMAIN}/login/generic_oauth
+          - https://grafana.${SECRET_DOMAIN}/login/generic_oauth
         userinfo_signed_response_alg: none
 
       - id: miniflux
         description: Miniflux
-        secret: $${MINIFLUX_OAUTH_CLIENT_SECRET}
+        secret: ${MINIFLUX_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -72,12 +72,12 @@ identity_providers:
           - groups
           - email
         redirect_uris:
-          - https://miniflux.$${SECRET_DOMAIN}/oauth2/oidc/callback
+          - https://miniflux.${SECRET_DOMAIN}/oauth2/oidc/callback
         userinfo_signed_response_alg: none
 
       - id: nodered
         description: Node-RED
-        secret: $${NODE_RED_OAUTH_CLIENT_SECRET}
+        secret: ${NODE_RED_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -87,12 +87,12 @@ identity_providers:
           - groups
           - email
         redirect_uris:
-          - https://nr.$${SECRET_DOMAIN}/auth/strategy/callback
+          - https://nr.${SECRET_DOMAIN}/auth/strategy/callback
         userinfo_signed_response_alg: none
 
       - id: weave-gitops
         description: Weave GitOps
-        secret: $${WEAVE_GITOPS_OAUTH_CLIENT_SECRET}
+        secret: ${WEAVE_GITOPS_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -102,7 +102,7 @@ identity_providers:
           - groups
           - email
         redirect_uris:
-          - https://gitops.$${SECRET_DOMAIN}/oauth2/callback
+          - https://gitops.${SECRET_DOMAIN}/oauth2/callback
         userinfo_signed_response_alg: none
 
 notifier:

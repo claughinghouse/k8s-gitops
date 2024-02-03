@@ -26,7 +26,3 @@ ui:
 
 web:
   port: $${CUSTOM_WEB_PORT}
-
-envFrom:
-  - configMapRef:
-      name: gatus-configmap

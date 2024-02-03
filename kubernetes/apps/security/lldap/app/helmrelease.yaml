@@ -42,12 +42,11 @@ spec:
             image:
               # TODO: move to semver once available
               repository: ghcr.io/lldap/lldap
-              # tag: latest-alpine-rootless@sha256:7dae25ae34d6cc50a3283d252341dbbc99128fac54c3aefb8a0dcd9348add142
-              tag: latest-alpine@sha256:6375aa672b4b2092cb9a2c77eab762775ba3af7b00ffb4fea75e3ab269ef465a
+              tag: latest-alpine-rootless@sha256:7dae25ae34d6cc50a3283d252341dbbc99128fac54c3aefb8a0dcd9348add142
             env:
               TZ: ${TIMEZONE}
-              LLDAP_HTTP_PORT: &httpPort 80
-              LLDAP_LDAP_PORT: &ldapPort 389
+              LLDAP_HTTP_PORT: &httpPort 8080
+              LLDAP_LDAP_PORT: &ldapPort 1389
               LLDAP_LDAP_BASE_DN: dc=home,dc=arpa
               LLDAP_HTTP_URL: https://{{ .Release.Name }}.${SECRET_DOMAIN}
               LLDAP_SMTP_OPTIONS__PORT: 2525

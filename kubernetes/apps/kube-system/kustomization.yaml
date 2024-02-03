@@ -5,7 +5,7 @@ resources:
   - ./cilium/ks.yaml
   # - ./coredns/ks.yaml
   - ./descheduler/ks.yaml
-  - ./external-secrets/ks.yaml
+  # - ./external-secrets/ks.yaml
   - ./kubelet-csr-approver/ks.yaml
   - ./metrics-server/ks.yaml
   - ./node-problem-detector/ks.yaml

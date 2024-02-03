@@ -21,7 +21,7 @@ authentication_backend:
     groups_filter: (member={dn})
     group_search_mode: filter
     user: uid=admin,ou=people,dc=home,dc=arpa
-    password: ${LLDAP_ADMIN_USER_PASS}
+    password: $${LLDAP_ADMIN_USER_PASS}
     attributes:
       username: uid
       display_name: displayName
@@ -47,7 +47,7 @@ identity_providers:
     clients:
       - id: grafana
         description: Grafana
-        secret: ${GRAFANA_OAUTH_CLIENT_SECRET}
+        secret: $${GRAFANA_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -62,7 +62,7 @@ identity_providers:
 
       - id: miniflux
         description: Miniflux
-        secret: ${MINIFLUX_OAUTH_CLIENT_SECRET}
+        secret: $${MINIFLUX_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -77,7 +77,7 @@ identity_providers:
 
       - id: nodered
         description: Node-RED
-        secret: ${NODE_RED_OAUTH_CLIENT_SECRET}
+        secret: $${NODE_RED_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -92,7 +92,7 @@ identity_providers:
 
       - id: weave-gitops
         description: Weave GitOps
-        secret: ${WEAVE_GITOPS_OAUTH_CLIENT_SECRET}
+        secret: $${WEAVE_GITOPS_OAUTH_CLIENT_SECRET}
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y

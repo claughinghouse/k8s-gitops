@@ -1,7 +1,7 @@
 ---
 alerting:
   iscord:
-    webhook-url: $${GATUS_DISCORD_WEBHOOK}
+    webhook-url: ${GATUS_DISCORD_WEBHOOK}
     default-alert:
       description: healthcheck failed
       send-on-resolved: true
@@ -25,7 +25,7 @@ metrics: true
 
 storage:
   type: postgres
-  path: postgres://$${INIT_POSTGRES_USER}:$${INIT_POSTGRES_PASS}@$${INIT_POSTGRES_HOST}:5432/$${INIT_POSTGRES_DBNAME}?sslmode=disable
+  path: postgres://${INIT_POSTGRES_USER}:${INIT_POSTGRES_PASS}@${INIT_POSTGRES_HOST}:5432/${INIT_POSTGRES_DBNAME}?sslmode=disable
   caching: true
 
 ui:
@@ -33,4 +33,4 @@ ui:
   header: Status
 
 web:
-  port: $${CUSTOM_WEB_PORT}
+  port: ${CUSTOM_WEB_PORT}

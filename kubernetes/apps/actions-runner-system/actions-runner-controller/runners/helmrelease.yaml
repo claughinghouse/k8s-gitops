@@ -24,8 +24,50 @@ spec:
     keepHistory: false
   values:
     runnerScaleSetName: arc-runner-set-k8s-gitops
-    githubConfigUrl: https://github.com/claughinghouse
+    githubConfigUrl: https://github.com/claughinghouse/k8s-gitops
     minRunners: 1
+    maxRunners: 3
+    githubConfigSecret: actions-runner-controller-secret
+    containerMode:
+      type: dind
+    template:
+      spec:
+        containers:
+          - name: runner
+            image: ghcr.io/onedr0p/actions-runner:2.312.0@sha256:67258788b02b04102d5f0321dfb98cb87d8d1bba75c923fd81a35325453ba647
+            command:
+              - /home/runner/run.sh
+    controllerServiceAccount:
+      name: actions-runner-controller-gha-rs-controller
+      namespace: actions-runner-system
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: rebut
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: gha-runner-scale-set
+      version: 0.8.2
+      sourceRef:
+        kind: HelmRepository
+        name: actions-runner-controller-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    runnerScaleSetName: arc-runner-set-rebut
+    githubConfigUrl: https://github.com/claughinghouse/rebut
+    # minRunners: 1
     maxRunners: 3
     githubConfigSecret: actions-runner-controller-secret
     containerMode:

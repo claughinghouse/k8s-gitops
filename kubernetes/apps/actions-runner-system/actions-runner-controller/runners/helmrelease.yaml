@@ -67,7 +67,7 @@ spec:
   values:
     runnerScaleSetName: arc-runner-set-rebut
     githubConfigUrl: https://github.com/claughinghouse/rebut
-    # minRunners: 1
+    minRunners: 1
     maxRunners: 3
     githubConfigSecret: actions-runner-controller-secret
     containerMode:

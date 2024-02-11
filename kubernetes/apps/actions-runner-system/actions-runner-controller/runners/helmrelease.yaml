@@ -72,13 +72,6 @@ spec:
     githubConfigSecret: actions-runner-controller-secret
     containerMode:
       type: dind
-    # template:
-    #   spec:
-    #     containers:
-    #       - name: runner
-    #         image: ghcr.io/onedr0p/actions-runner:2.312.0@sha256:67258788b02b04102d5f0321dfb98cb87d8d1bba75c923fd81a35325453ba647
-    #         command:
-    #           - /home/runner/run.sh
     controllerServiceAccount:
       name: actions-runner-controller-gha-rs-controller
       namespace: actions-runner-system

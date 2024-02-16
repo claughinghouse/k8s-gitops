@@ -44,7 +44,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: rebut
+  name: private-repos
 spec:
   interval: 30m
   chart:
@@ -65,8 +65,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    runnerScaleSetName: arc-runner-set-rebut
-    githubConfigUrl: https://github.com/claughinghouse/rebut
+    runnerScaleSetName: arc-runner-set
+    githubConfigUrl: https://github.com/claughinghouse
     githubConfigSecret: actions-runner-controller-secret
     containerMode:
       type: dind

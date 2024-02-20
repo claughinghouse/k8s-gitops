@@ -65,7 +65,7 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    runnerScaleSetName: arc-runner-set
+    runnerScaleSetName: arc-runner-set-rebut
     githubConfigUrl: https://github.com/claughinghouse/rebut
     minRunners: 1
     githubConfigSecret: actions-runner-controller-secret

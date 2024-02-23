@@ -80,18 +80,24 @@ spec:
             regex: (apiserver_response_sizes_bucket|apiserver_watch_events_sizes_bucket)
     kubeControllerManager:
       enabled: true
-      endpoints: &endpoints
+      endpoints:
         - ${SECRET_ENDPOINTS_N2}
         - ${SECRET_ENDPOINTS_N3}
         - ${SECRET_ENDPOINTS_N4}
     kubeEtcd:
       enabled: true
-      endpoints: *endpoints
+      endpoints:
+        - ${SECRET_ENDPOINTS_N2}
+        - ${SECRET_ENDPOINTS_N3}
+        - ${SECRET_ENDPOINTS_N4}
     kubeProxy:
       enabled: false
     kubeScheduler:
       enabled: true
-      endpoints: *endpoints
+      endpoints:
+        - ${SECRET_ENDPOINTS_N2}
+        - ${SECRET_ENDPOINTS_N3}
+        - ${SECRET_ENDPOINTS_N4}
     prometheus:
       ingress:
         enabled: true
@@ -106,7 +112,9 @@ spec:
         pathType: Prefix
         tls:
           - hosts:
-              - *host
+              - ${SECRET_ENDPOINTS_N2}
+              - ${SECRET_ENDPOINTS_N3}
+              - ${SECRET_ENDPOINTS_N4}
       thanosService:
         enabled: true
       thanosServiceMonitor:

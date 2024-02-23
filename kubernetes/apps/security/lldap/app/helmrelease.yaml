@@ -45,8 +45,8 @@ spec:
               tag: latest-alpine-rootless@sha256:a25ff0243483d6955a00713e4623ec13472920260bc2bb5460202b1a2ea4edc8
             env:
               TZ: ${TIMEZONE}
-              LLDAP_HTTP_PORT: &httpPort 80
-              LLDAP_LDAP_PORT: &ldapPort 389
+              LLDAP_HTTP_PORT: &httpPort 8080
+              LLDAP_LDAP_PORT: &ldapPort 1389
               LLDAP_LDAP_BASE_DN: dc=home,dc=arpa
               LLDAP_HTTP_URL: https://{{ .Release.Name }}.${SECRET_DOMAIN}
               LLDAP_SMTP_OPTIONS__PORT: 2525

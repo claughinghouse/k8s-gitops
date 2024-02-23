@@ -27,19 +27,18 @@ spec:
     monitoring:
       enabled: true
       createPrometheusRules: true
-    # TODO
-    # ingress:
-    #   dashboard:
-    #     ingressClassName: internal
-    #     annotations:
-    #       hajimari.io/appName: Rook
-    #       hajimari.io/icon: mdi:chess-rook
-    #     host:
-    #       name: &host rook.${SECRET_DOMAIN}
-    #       path: /
-    #     tls:
-    #       - hosts:
-    #           - *host
+    ingress:
+      dashboard:
+        ingressClassName: internal
+        annotations:
+          hajimari.io/appName: Rook
+          hajimari.io/icon: mdi:chess-rook
+        host:
+          name: &host rook.${SECRET_DOMAIN}
+          path: /
+        tls:
+          - hosts:
+              - *host
     toolbox:
       enabled: true
     configOverride: |
@@ -57,6 +56,31 @@ spec:
             - ${SECRET_LAN_ROOK_IP_CIDR}
         connections:
           requireMsgr2: true
+      resources:
+        mgr:
+          requests:
+            cpu: 100m
+            memory: 512Mi
+          limits:
+            memory: 2Gi
+        mon:
+          requests:
+            cpu: 50m
+            memory: 512Mi
+          limits:
+            memory: 1Gi
+        osd:
+          requests:
+            cpu: 500m
+            memory: 2Gi
+          limits:
+            memory: 8Gi
+        mgr-sidecar:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            memory: 256Mi
       crashCollector:
         disable: false
       dashboard:
@@ -75,16 +99,16 @@ spec:
             deviceFilter: ^sd[b-h]
           - name: n4
             deviceFilter: ^sd[b-h]
-      # placement:
-      #   mgr: &placement
-      #     nodeAffinity:
-      #       requiredDuringSchedulingIgnoredDuringExecution:
-      #         nodeSelectorTerms:
-      #           - matchExpressions:
-      #               - key: node-role.kubernetes.io/control-plane
-      #                 operator: Exists
-      #   mon:
-      #     <<: *placement
+      placement:
+        mgr: &placement
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: node-role.kubernetes.io/control-plane
+                      operator: Exists
+        mon:
+          <<: *placement
       resources:
         mgr:
           requests:
@@ -94,19 +118,7 @@ spec:
             cpu: 2000m
             memory: 2Gi
         mon:
-          requests:
-            cpu: 1000m
-            memory: 1Gi
-          limits:
-            cpu: 4000m
-            memory: 4Gi
-        osd:
-          requests:
-            cpu: 1000m
-            memory: 4Gi
-          limits:
-            cpu: 4000m
-            memory: 8Gi
+          <<: *placement
     cephBlockPools:
       - name: ceph-blockpool
         spec:

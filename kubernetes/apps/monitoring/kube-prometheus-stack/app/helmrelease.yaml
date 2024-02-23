@@ -81,7 +81,9 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &endpoints
-        ${SECRET_ENDPOINTS}
+        - ${SECRET_ENDPOINTS_N2}
+        - ${SECRET_ENDPOINTS_N3}
+        - ${SECRET_ENDPOINTS_N4}
     kubeEtcd:
       enabled: true
       endpoints: *endpoints

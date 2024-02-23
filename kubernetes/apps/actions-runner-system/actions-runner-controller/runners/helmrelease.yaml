@@ -25,8 +25,6 @@ spec:
   values:
     runnerScaleSetName: arc-runner-set-k8s-gitops
     githubConfigUrl: https://github.com/claughinghouse/k8s-gitops
-    #minRunners: 1
-    # maxRunners: 3
     githubConfigSecret: actions-runner-controller-secret
     containerMode:
       type: dind
@@ -67,7 +65,6 @@ spec:
   values:
     runnerScaleSetName: arc-runner-set-rebut
     githubConfigUrl: https://github.com/claughinghouse/rebut
-    #minRunners: 1
     githubConfigSecret: actions-runner-controller-secret
     containerMode:
       type: dind

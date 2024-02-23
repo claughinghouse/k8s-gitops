@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: grafana
-      version: 7.3.2
+      version: 7.3.1
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
@@ -86,7 +86,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/default
+              path: /var/lib/grafana/dashboards/default-folder
           - name: blocky
             orgId: 1
             folder: Blocky
@@ -94,7 +94,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/blocky
+              path: /var/lib/grafana/dashboards/blocky-folder
           - name: ceph
             orgId: 1
             folder: Ceph
@@ -102,7 +102,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/ceph
+              path: /var/lib/grafana/dashboards/ceph-folder
           - name: flux
             orgId: 1
             folder: Flux
@@ -110,7 +110,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/flux
+              path: /var/lib/grafana/dashboards/flux-folder
           - name: kubernetes
             orgId: 1
             folder: Kubernetes
@@ -118,7 +118,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/kubernetes
+              path: /var/lib/grafana/dashboards/kubernetes-folder
           - name: media
             orgId: 1
             folder: Media
@@ -126,7 +126,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/media
+              path: /var/lib/grafana/dashboards/media-folder
           - name: nginx
             orgId: 1
             folder: Nginx
@@ -134,7 +134,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/nginx
+              path: /var/lib/grafana/dashboards/nginx-folder
           - name: prometheus
             orgId: 1
             folder: Prometheus
@@ -142,7 +142,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/prometheus
+              path: /var/lib/grafana/dashboards/prometheus-folder
           - name: thanos
             orgId: 1
             folder: Thanos
@@ -150,7 +150,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/thanos
+              path: /var/lib/grafana/dashboards/thanos-folder
           - name: unifi
             orgId: 1
             folder: Unifi
@@ -158,7 +158,7 @@ spec:
             disableDeletion: false
             editable: true
             options:
-              path: /var/lib/grafana/dashboards/unifi
+              path: /var/lib/grafana/dashboards/unifi-folder
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -206,11 +206,6 @@ spec:
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
-        cloudnative-pg:
-          url: https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/grafana-dashboard.json
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
         external-dns:
           # renovate: depName="External-dns"
           gnetId: 15038
@@ -234,7 +229,9 @@ spec:
           # renovate: depName="Redis Dashboard for Prometheus Redis Exporter 1.x"
           gnetId: 763
           revision: 6
-          datasource: Prometheus
+          datasource:
+            - name: DS_PROM
+              value: Prometheus
         smartctl-exporter:
           # renovate: depName="Dashboard for smartctl_exporter"
           gnetId: 20204
@@ -256,28 +253,6 @@ spec:
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
-        # synology-nas-details:
-        #   # renovate: depName="Synology NAS Details"
-        #   gnetId: 14284
-        #   revision: 9
-        #   datasource:
-        #     - name: DS_PROMETHEUS
-        #       value: Prometheus
-      # blocky:
-      #   blocky:
-      #     # renovate: depName="blocky"
-      #     gnetId: 13768
-      #     revision: 3
-      #     datasource:
-      #       - name: DS_PROMETHEUS
-      #         value: Prometheus
-      #       - name: VAR_BLOCKY_URL
-      #         value: https:\\/\\/blocky.${PUBLIC_DOMAIN}
-      #   blocky-query:
-      #     url: https://raw.githubusercontent.com/0xERR0R/blocky/main/docs/blocky-query-grafana-postgres.json
-      #     datasource:
-      #       - name: DS_POSTGRES
-      #         value: Blocky
       ceph:
         ceph-cluster:
           # renovate: depName="Ceph Cluster"
@@ -307,7 +282,7 @@ spec:
       kubernetes:
         kubernetes-api-server:
           # renovate: depName="Kubernetes / System / API Server"
-          gnetId: 16761
+          gnetId: 15761
           revision: 16
           datasource: Prometheus
         kubernetes-coredns:
@@ -402,27 +377,27 @@ spec:
         thanos-store:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/store.json
           datasource: Prometheus
-      # unifi:
-      #   unifi-insights:
-      #     # renovate: depName="UniFi-Poller: Client Insights - Prometheus"
-      #     gnetId: 11315
-      #     revision: 9
-      #     datasource: Prometheus
-      #   unifi-network-sites:
-      #     # renovate: depName="UniFi-Poller: Network Sites - Prometheus"
-      #     gnetId: 11311
-      #     revision: 5
-      #     datasource: Prometheus
-      #   unifi-uap:
-      #     # renovate: depName="UniFi-Poller: UAP Insights - Prometheus"
-      #     gnetId: 11314
-      #     revision: 10
-      #     datasource: Prometheus
-      #   unifi-usw:
-      #     # renovate: depName="UniFi-Poller: USW Insights - Prometheus"
-      #     gnetId: 11312
-      #     revision: 9
-      #     datasource: Prometheus
+      unifi:
+        unifi-insights:
+          # renovate: depName="UniFi-Poller: Client Insights - Prometheus"
+          gnetId: 11315
+          revision: 9
+          datasource: Prometheus
+        unifi-network-sites:
+          # renovate: depName="UniFi-Poller: Network Sites - Prometheus"
+          gnetId: 11311
+          revision: 5
+          datasource: Prometheus
+        unifi-uap:
+          # renovate: depName="UniFi-Poller: UAP Insights - Prometheus"
+          gnetId: 11314
+          revision: 10
+          datasource: Prometheus
+        unifi-usw:
+          # renovate: depName="UniFi-Poller: USW Insights - Prometheus"
+          gnetId: 11312
+          revision: 9
+          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true

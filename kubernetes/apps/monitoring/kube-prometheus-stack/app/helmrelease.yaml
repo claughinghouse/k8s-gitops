@@ -81,10 +81,6 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &endpoints ${SECRET_ENDPOINTS}
-        # valueFrom:
-        #   secretKeyRef:
-        #     name: prometheus-endpoints
-        #     key: endpoints
     kubeEtcd:
       enabled: true
       endpoints: *endpoints

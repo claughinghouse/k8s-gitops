@@ -109,16 +109,6 @@ spec:
                       operator: Exists
         mon:
           <<: *placement
-      resources:
-        mgr:
-          requests:
-            cpu: 500m
-            memory: 512Mi
-          limits:
-            cpu: 2000m
-            memory: 2Gi
-        mon:
-          <<: *placement
     cephBlockPools:
       - name: ceph-blockpool
         spec:

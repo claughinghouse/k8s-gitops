@@ -33,7 +33,7 @@ spec:
       annotations:
         hajimari.io/icon: simple-icons:flux
       hosts:
-        - host: &host gitops.${PUBLIC_DOMAIN}
+        - host: &host gitops.${SECRET_DOMAIN}
           paths:
             - path: /
               pathType: Prefix

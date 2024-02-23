@@ -7,7 +7,6 @@ resources:
   - ./descheduler/ks.yaml
   - ./kubelet-csr-approver/ks.yaml
   - ./metrics-server/ks.yaml
-  - ./node-problem-detector/ks.yaml
   - ./reloader/ks.yaml
   - ./smarter-device-manager/ks.yaml
   - ./snapshot-controller/ks.yaml

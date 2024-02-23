@@ -80,11 +80,11 @@ spec:
             regex: (apiserver_response_sizes_bucket|apiserver_watch_events_sizes_bucket)
     kubeControllerManager:
       enabled: true
-      endpoints:
-        valueFrom:
-          secretKeyRef:
-            name: prometheus-endpoints
-            key: endpoints
+      endpoints: &endpoints ${SECRET_ENDPOINTS}
+        # valueFrom:
+        #   secretKeyRef:
+        #     name: prometheus-endpoints
+        #     key: endpoints
     kubeEtcd:
       enabled: true
       endpoints: *endpoints

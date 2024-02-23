@@ -23,5 +23,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    providerRegex: |
-      n\d+$
+    bypassDnsResolution: true
+    providerRegex: n\d+$
+    metrics:
+      enable: true
+      serviceMonitor:
+        enabled: true

@@ -7,11 +7,11 @@ metadata:
     gatus.io/enabled: "true"
     gatus.io/status-code: "404"
     hajimari.io/enable: "false"
-    external-dns.alpha.kubernetes.io/target: external.${PUBLIC_DOMAIN}
+    external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
 spec:
   ingressClassName: external
   rules:
-    - host: &host flux-webhook.${PUBLIC_DOMAIN}
+    - host: &host flux-webhook.${SECRET_DOMAIN}
       http:
         paths:
           - path: /hook/

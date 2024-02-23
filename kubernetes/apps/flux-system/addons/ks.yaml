@@ -32,22 +32,22 @@ spec:
 #   interval: 30m
 #   retryInterval: 1m
 #   timeout: 5m
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1
-# kind: Kustomization
-# metadata:
-#   name: cluster-apps-flux-webhooks
-#   namespace: flux-system
-# spec:
-#   targetNamespace: flux-system
-#   dependsOn:
-#     - name: cluster-apps-external-secrets-stores
-#   path: ./kubernetes/apps/flux-system/addons/webhooks
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: k8s-gitops
-#   wait: true
-#   interval: 30m
-#   retryInterval: 1m
-#   timeout: 5m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-flux-webhooks
+  namespace: flux-system
+spec:
+  targetNamespace: flux-system
+  dependsOn:
+    - name: cluster-apps-external-secrets-stores
+  path: ./kubernetes/apps/flux-system/addons/webhooks
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: k8s-gitops
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m

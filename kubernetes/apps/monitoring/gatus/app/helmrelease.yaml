@@ -62,7 +62,7 @@ spec:
             env:
               TZ: ${TIMEZONE}
               GATUS_CONFIG_PATH: /config
-              # CUSTOM_WEB_PORT: &port 80
+              CUSTOM_WEB_PORT: &port 8080
             envFrom: *envFrom
             probes:
               liveness: &probes
@@ -71,7 +71,7 @@ spec:
                 spec:
                   httpGet:
                     path: &path /health
-                    port: &port 8080
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1

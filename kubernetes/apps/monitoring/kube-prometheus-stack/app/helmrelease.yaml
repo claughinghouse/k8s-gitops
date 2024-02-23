@@ -35,7 +35,7 @@ spec:
           hajimari.io/appName: Alertmanager
           hajimari.io/icon: fluent:alert-16-filled
         hosts:
-          - &host am.${PUBLIC_DOMAIN}
+          - &host am.${SECRET_DOMAIN}
         paths:
           - /
         pathType: Prefix
@@ -50,7 +50,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: ${CLUSTER_STORAGE_HOSTPATH}
+              # storageClassName: ${CLUSTER_STORAGE_HOSTPATH}
               resources:
                 requests:
                   storage: 1Gi
@@ -66,9 +66,9 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &endpoints
-        - 10.0.0.10
-        - 10.0.0.11
-        - 10.0.0.12
+        - n2
+        - n3
+        - n4
     kubeEtcd:
       enabled: true
       endpoints: *endpoints
@@ -85,7 +85,7 @@ spec:
           hajimari.io/appName: Prometheus
           hajimari.io/icon: simple-icons:prometheus
         hosts:
-          - &host prometheus.${PUBLIC_DOMAIN}
+          - &host prometheus.${SECRET_DOMAIN}
         paths:
           - /
         pathType: Prefix
@@ -121,7 +121,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: ${CLUSTER_STORAGE_HOSTPATH}
+              # storageClassName: ${CLUSTER_STORAGE_HOSTPATH}
               resources:
                 requests:
                   storage: 20Gi

@@ -6,9 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: monitoring
-  dependsOn:
-    - name: cluster-apps-external-secrets-stores
-    - name: cluster-apps-democratic-csi-local-hostpath
   path: ./kubernetes/apps/monitoring/kube-prometheus-stack/app
   prune: true
   sourceRef:

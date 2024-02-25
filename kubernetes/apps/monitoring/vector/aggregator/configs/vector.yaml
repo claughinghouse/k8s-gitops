@@ -34,11 +34,11 @@ sources:
       codec: json
     host_key: __host
 
-  unifi_kernel_logs:
-    address: 0.0.0.0:6003
-    type: syslog
-    mode: udp
-    max_length: 102400
+  # unifi_kernel_logs:
+  #   address: 0.0.0.0:6003
+  #   type: syslog
+  #   mode: udp
+  #   max_length: 102400
 
 transforms:
   kubernetes_transform:
@@ -134,4 +134,3 @@ sinks:
       node: "{{ node }}"
       talos_service: '{{ "talos-service" }}'
       namespace: "talos:service"
-

@@ -8,7 +8,6 @@ spec:
   targetNamespace: monitoring
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
-    - name: cluster-apps-democratic-csi-local-hostpath
   path: ./kubernetes/apps/monitoring/loki/app
   prune: true
   sourceRef:

@@ -61,8 +61,8 @@ spec:
                 drop:
                   - ALL
         pod:
-          nodeSelector:
-            intel.feature.node.kubernetes.io/gpu: "true"
+          # nodeSelector:
+          #   intel.feature.node.kubernetes.io/gpu: "true"
           securityContext:
             runAsUser: 568
             runAsGroup: 568

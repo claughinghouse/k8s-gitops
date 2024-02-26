@@ -8,7 +8,6 @@ spec:
   targetNamespace: monitoring
   dependsOn:
     - name: cluster-apps-bazarr
-    - name: cluster-apps-external-secrets-stores
   path: ./kubernetes/apps/monitoring/exporters/bazarr-exporter/app
   prune: true
   sourceRef:

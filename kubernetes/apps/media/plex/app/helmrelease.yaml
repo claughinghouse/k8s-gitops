@@ -47,13 +47,13 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
-            resources:
-              requests:
-                gpu.intel.com/i915: 1
-                cpu: 100m
-              limits:
-                gpu.intel.com/i915: 1
-                memory: 10Gi
+            # resources:
+            #   requests:
+            #     gpu.intel.com/i915: 1
+            #     cpu: 100m
+            #   limits:
+            #     gpu.intel.com/i915: 1
+            #     memory: 10Gi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -96,12 +96,12 @@ spec:
       config:
         enabled: true
         existingClaim: *app
-      media:
-        type: nfs
-        server: nas.${SECRET_DOMAIN}
-        path: /volume1/media
-        globalMounts:
-          - readOnly: true
+      # media:
+      #   type: nfs
+      #   server: nas.${SECRET_DOMAIN}
+      #   path: /volume1/media
+      #   globalMounts:
+      #     - readOnly: true
       transcode:
         type: emptyDir
       tmp:

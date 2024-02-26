@@ -102,7 +102,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:television-classic
         hosts:
-          - host: &host "{{ .Release.Name }}.${PUBLIC_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -117,7 +117,7 @@ spec:
         existingClaim: *app
       media:
         type: nfs
-        server: nas.${PUBLIC_DOMAIN}
+        server: nas.${SECRET_DOMAIN}
         path: /volume1/media
       tmp:
         type: emptyDir

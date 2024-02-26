@@ -42,7 +42,7 @@ spec:
         - name: ups
           module:
             - cyberpower
-          target: ups.${PUBLIC_DOMAIN}
+          target: ups.${SECRET_DOMAIN}
       path: /snmp
       scrapeTimeout: 10s
       relabelings:

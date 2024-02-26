@@ -44,7 +44,7 @@ spec:
               TZ: ${TIMEZONE}
               HASS_UNIT_SYSTEM: imperial
               HASS_PURGE_KEEP_DAYS: 30
-              HASS_EXTERNAL_URL: https://hass.${PUBLIC_DOMAIN}
+              HASS_EXTERNAL_URL: https://hass.${SECRET_DOMAIN}
               HASS_TRUSTED_PROXIES: ${CLUSTER_POD_IP_CIDR}
             envFrom: *envFrom
             probes:
@@ -85,15 +85,15 @@ spec:
         className: internal
         annotations:
           hajimari.io/icon: mdi:home-assistant
-          hajimari.io/url: https://hass.${PUBLIC_DOMAIN}
+          hajimari.io/url: https://hass.${SECRET_DOMAIN}
         hosts:
-          - host: &host "{{ .Release.Name }}.${PUBLIC_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths: &paths
               - path: /
                 service:
                   name: main
                   port: http
-          - host: &customHost hass.${PUBLIC_DOMAIN}
+          - host: &customHost hass.${SECRET_DOMAIN}
             paths: *paths
         tls:
           - hosts:

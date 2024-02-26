@@ -81,9 +81,9 @@ spec:
           gatus.io/path: *path
           hajimari.io/icon: mdi:plex
           nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-          external-dns.alpha.kubernetes.io/target: external.${PUBLIC_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
         hosts:
-          - host: &host "{{ .Release.Name }}.${PUBLIC_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -98,7 +98,7 @@ spec:
         existingClaim: *app
       media:
         type: nfs
-        server: nas.${PUBLIC_DOMAIN}
+        server: nas.${SECRET_DOMAIN}
         path: /volume1/media
         globalMounts:
           - readOnly: true

@@ -5,10 +5,10 @@ metadata:
   name: plex
 spec:
   accessModes: ["ReadWriteOnce"]
-  dataSourceRef:
-    kind: ReplicationDestination
-    apiGroup: volsync.backube
-    name: plex-rdst
+  # dataSourceRef:
+  #   kind: ReplicationDestination
+  #   apiGroup: volsync.backube
+  #   name: plex-rdst
   resources:
     requests:
       storage: 50Gi

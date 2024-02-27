@@ -86,7 +86,7 @@ spec:
           #               operator: In
           #               values:
           #                 - radarr
-                  topologyKey: kubernetes.io/hostname
+                  # topologyKey: kubernetes.io/hostname
           securityContext:
             runAsUser: 568
             runAsGroup: 568

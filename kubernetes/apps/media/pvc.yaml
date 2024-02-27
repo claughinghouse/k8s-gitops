@@ -12,3 +12,4 @@ spec:
     - ReadWriteMany
   storageClassName: ceph-filesystem
   volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain

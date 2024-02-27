@@ -99,8 +99,8 @@ spec:
       media:
         existingClaim: media
         path: /volume1/media
-        globalMounts:
-          - readOnly: true
+        # globalMounts:
+        #   - readOnly: true
       transcode:
         type: emptyDir
       tmp:

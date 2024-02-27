@@ -121,8 +121,7 @@ spec:
           - path: /config/cache
             subPath: cache
       media:
-        type: nfs
-        server: nas.${SECRET_DOMAIN}
+        existingClaim: media
         path: /volume1/media
       scripts:
         type: configMap

@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: plex
+  name: plex-restic
 spec:
   accessModes: ["ReadWriteOnce"]
   dataSourceRef:

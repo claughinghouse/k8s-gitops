@@ -77,15 +77,15 @@ spec:
                 drop:
                   - ALL
         pod:
-          affinity:
-            podAntiAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                - labelSelector:
-                    matchExpressions:
-                      - key: app.kubernetes.io/name
-                        operator: In
-                        values:
-                          - radarr
+          # affinity:
+          #   podAntiAffinity:
+          #     requiredDuringSchedulingIgnoredDuringExecution:
+          #       - labelSelector:
+          #           matchExpressions:
+          #             - key: app.kubernetes.io/name
+          #               operator: In
+          #               values:
+          #                 - radarr
                   topologyKey: kubernetes.io/hostname
           securityContext:
             runAsUser: 568
@@ -116,8 +116,7 @@ spec:
         enabled: true
         existingClaim: *app
       media:
-        type: nfs
-        server: nas.${SECRET_DOMAIN}
+        existingClaim: media
         path: /volume1/media
       tmp:
         type: emptyDir

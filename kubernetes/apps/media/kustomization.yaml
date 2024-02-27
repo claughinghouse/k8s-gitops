@@ -3,16 +3,16 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./namespace.yaml
-  # - ./pvc.yaml
-  # - ./autobrr/ks.yaml
-  # - ./bazarr/ks.yaml
-  # - ./overseerr/ks.yaml # need plex online first
-  # - ./plex/ks.yaml
-  # - ./prowlarr/ks.yaml
-  # # - ./qbittorrent/ks.yaml
-  # - ./radarr/ks.yaml
-  # - ./recyclarr/ks.yaml
-  # # - ./sabnzbd/ks.yaml
-  # - ./sonarr/ks.yaml
-  # - ./tautulli/ks.yaml
-  # # - ./unpackerr/ks.yaml
+  - ./pvc.yaml
+  - ./autobrr/ks.yaml
+  - ./bazarr/ks.yaml
+  - ./overseerr/ks.yaml # need plex online first
+  - ./plex/ks.yaml
+  - ./prowlarr/ks.yaml
+  # - ./qbittorrent/ks.yaml
+  - ./radarr/ks.yaml
+  - ./recyclarr/ks.yaml
+  # - ./sabnzbd/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./tautulli/ks.yaml
+  # - ./unpackerr/ks.yaml

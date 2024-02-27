@@ -7,7 +7,7 @@ resources:
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   - ./overseerr/ks.yaml # need plex online first
-  # - ./plex/ks.yaml
+  - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   # - ./qbittorrent/ks.yaml
   - ./radarr/ks.yaml

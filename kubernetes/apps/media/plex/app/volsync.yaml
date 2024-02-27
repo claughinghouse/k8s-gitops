@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: plex-restic
+  name: plex
 spec:
   accessModes: ["ReadWriteOnce"]
   dataSourceRef:
@@ -11,7 +11,7 @@ spec:
     name: plex-rdst
   resources:
     requests:
-      storage: 100Gi
+      storage: 50Gi
   storageClassName: ${CLUSTER_STORAGE_BLOCK}
 ---
 apiVersion: volsync.backube/v1alpha1
@@ -35,7 +35,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-    capacity: 100Gi # must match the PersistentVolumeClaim `.resources.requests.storage` size above
+    capacity: 50Gi # must match the PersistentVolumeClaim `.resources.requests.storage` size above
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource

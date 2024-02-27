@@ -96,12 +96,11 @@ spec:
       config:
         enabled: true
         existingClaim: *app
-      # media:
-      #   type: nfs
-      #   server: nas.${SECRET_DOMAIN}
-      #   path: /volume1/media
-      #   globalMounts:
-      #     - readOnly: true
+      media:
+        existingClaim: media
+        path: /volume1/media
+        globalMounts:
+          - readOnly: true
       transcode:
         type: emptyDir
       tmp:

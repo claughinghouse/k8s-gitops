@@ -58,16 +58,16 @@ spec:
                 drop:
                   - ALL
         pod:
-          affinity:
-            podAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                - labelSelector:
-                    matchExpressions:
-                      - key: app.kubernetes.io/name
-                        operator: In
-                        values:
-                          - plex
-                  topologyKey: kubernetes.io/hostname
+          # affinity:
+          #   podAffinity:
+          #     requiredDuringSchedulingIgnoredDuringExecution:
+          #       - labelSelector:
+          #           matchExpressions:
+          #             - key: app.kubernetes.io/name
+          #               operator: In
+          #               values:
+          #                 - plex
+          #         topologyKey: kubernetes.io/hostname
           securityContext:
             runAsUser: 568
             runAsGroup: 568

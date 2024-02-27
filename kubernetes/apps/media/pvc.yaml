@@ -12,3 +12,6 @@ spec:
   storageClassName: ceph-filesystem
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
+  resources:
+    requests:
+      storage: 100Gi

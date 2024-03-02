@@ -4,7 +4,7 @@ kind: Cluster
 metadata:
   name: postgres
 spec:
-  instances: 1
+  instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:16.2-7
   enableSuperuserAccess: true
   inheritedMetadata:

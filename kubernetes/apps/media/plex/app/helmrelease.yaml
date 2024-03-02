@@ -47,13 +47,11 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
-            # resources:
-            #   requests:
-            #     gpu.intel.com/i915: 1
-            #     cpu: 100m
-            #   limits:
-            #     gpu.intel.com/i915: 1
-            #     memory: 10Gi
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 10Gi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -61,8 +59,6 @@ spec:
                 drop:
                   - ALL
         pod:
-          # nodeSelector:
-          #   intel.feature.node.kubernetes.io/gpu: "true"
           securityContext:
             runAsUser: 568
             runAsGroup: 568
@@ -98,9 +94,9 @@ spec:
         existingClaim: *app
       media:
         existingClaim: media
-        path: /volume1/media
-        # globalMounts:
-        #   - readOnly: true
+        path: /media/movies
+        globalMounts:
+          - readOnly: true
       transcode:
         type: emptyDir
       tmp:

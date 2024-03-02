@@ -29,7 +29,6 @@ spec:
     volumeSnapshotClassName: ${CLUSTER_SNAPSHOT_BLOCK}
     cacheAccessModes: ["ReadWriteOnce"]
     cacheCapacity: 8Gi
-    # cacheStorageClassName: ${CLUSTER_STORAGE_HOSTPATH}
     cacheStorageClassName: ${CLUSTER_STORAGE_BLOCK}
     moverSecurityContext:
       runAsUser: 568
@@ -54,7 +53,6 @@ spec:
     volumeSnapshotClassName: ${CLUSTER_SNAPSHOT_BLOCK}
     cacheAccessModes: ["ReadWriteOnce"]
     cacheCapacity: 8Gi
-    # cacheStorageClassName: ${CLUSTER_STORAGE_HOSTPATH}
     cacheStorageClassName: ${CLUSTER_STORAGE_BLOCK}
     moverSecurityContext:
       runAsUser: 568

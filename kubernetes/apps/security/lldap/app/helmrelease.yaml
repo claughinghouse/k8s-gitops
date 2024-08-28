@@ -42,7 +42,7 @@ spec:
             image:
               # TODO: Move to semver when v0.5.0+ is released
               repository: ghcr.io/lldap/lldap
-              tag: latest-alpine-rootless@sha256:de567fd29eeefee633067a0b83d165a40a5c6afaed9b74f596d2a54e02f33981
+              tag: latest-alpine-rootless@sha256:0e742b52d8be5b4d58357cad97ea0208d2d851a9d98b230f5630db50d44f0938
             env:
               TZ: ${TIMEZONE}
               LLDAP_HTTP_PORT: &httpPort 8080

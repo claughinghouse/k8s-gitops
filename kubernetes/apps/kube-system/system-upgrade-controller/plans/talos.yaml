@@ -23,7 +23,7 @@ spec:
       - key: apple.feature.node.kubernetes.io/t2
         operator: Exists
   prepare: &prepare
-    image: ghcr.io/siderolabs/talosctl:v1.8.0
+    image: ghcr.io/siderolabs/talosctl:v1.8.1
     envs:
       - name: NODE_IP
         valueFrom:

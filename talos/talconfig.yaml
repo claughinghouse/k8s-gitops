@@ -11,7 +11,7 @@ endpoint: https://k8s.${domainName}:6443
 # renovate: datasource=docker depName=ghcr.io/buroa/installer
 talosVersion: v1.8.1
 # renovate: datasource=github-releases depName=kubernetes/kubernetes extractVersion=^v(?<version>.*)$
-kubernetesVersion: 1.31.1
+kubernetesVersion: 1.31.2
 
 cniConfig:
   name: none

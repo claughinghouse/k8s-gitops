@@ -135,7 +135,7 @@ spec:
           - new-service-discovery-manager
         externalUrl: https://prometheus.${SECRET_DOMAIN}
         thanos:
-          image: quay.io/thanos/thanos:v0.37.1
+          image: quay.io/thanos/thanos:v0.37.2
           objectStorageConfig:
             existingSecret:
               name: thanos-objstore-secret

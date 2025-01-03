@@ -33,7 +33,7 @@ spec:
           main:
             image:
               repository: docker.io/cloudflare/cloudflared
-              tag: 2024.12.0@sha256:1b92a01338a9a310cf5e1c7b77c61cce333e14117398814e4c124e4e9f7bbde2
+              tag: 2024.12.2@sha256:cb38f3f30910a7d51545118a179b8516eb7066eac61855d62ce6ed733c54ce70
             args:
               - tunnel
               - --config

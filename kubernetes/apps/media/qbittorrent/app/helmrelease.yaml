@@ -78,7 +78,7 @@ spec:
           xseed:
             image:
               repository: ghcr.io/cross-seed/cross-seed
-              tag: 6.1.1@sha256:5cb54b46a614f362c0332a91e5754d6998d45ae27ccc2c77b04b1a3493816331
+              tag: 6.8.2@sha256:e0cc1cdd1348c8d4ed889d8b077bf0e2a18a3ff48c6c4779e2d2ae38b5d482f4
             args:
               - daemon
             env:
